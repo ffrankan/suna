@@ -47,11 +47,14 @@ def setup_api_keys() -> None:
             logger.debug(f"API key set for provider: {provider}")
         else:
             logger.warning(f"No API key found for provider: {provider}")
-
-    # Set up OpenRouter API base if not already set
-    if config.OPENROUTER_API_KEY and config.OPENROUTER_API_BASE:
-        os.environ['OPENROUTER_API_BASE'] = config.OPENROUTER_API_BASE
-        logger.debug(f"Set OPENROUTER_API_BASE to {config.OPENROUTER_API_BASE}")
+        
+        # Set up API base if configured
+        base_key = f'{provider}_API_BASE'
+        if hasattr(config, base_key):
+            base_url = getattr(config, base_key)
+            if base_url:
+                os.environ[base_key] = base_url
+                logger.debug(f"Set {base_key} to {base_url}")
 
     # Set up AWS Bedrock credentials
     aws_access_key = config.AWS_ACCESS_KEY_ID

@@ -200,7 +200,9 @@ class Configuration:
     
     # LLM API keys
     ANTHROPIC_API_KEY: Optional[str] = None
+    ANTHROPIC_API_BASE: Optional[str] = "https://api.anthropic.com/v1"
     OPENAI_API_KEY: Optional[str] = None
+    OPENAI_API_BASE: Optional[str] = "https://api.openai.com/v1"
     GROQ_API_KEY: Optional[str] = None
     OPENROUTER_API_KEY: Optional[str] = None
     XAI_API_KEY: Optional[str] = None
